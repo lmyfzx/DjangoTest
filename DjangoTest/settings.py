@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls',
+    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'DjangoTest.urls'
@@ -55,8 +57,7 @@ ROOT_URLCONF = 'DjangoTest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'DjangoTest.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE':'django.db.backends.mysql',
-        'NAME':'cqcaee',
+        'NAME':'learn',
         'HOST':'127.0.0.1',
         'PORT':'3306',
         'USER':'root',
@@ -129,3 +130,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+INTERNAL_IPS = ('127.0.0.1',)
