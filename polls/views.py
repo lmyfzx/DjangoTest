@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from .models import Question, Choice
 from django.core.urlresolvers import reverse
+from django.views import generic
 # Create your views here.
 
 
@@ -45,3 +46,21 @@ def vote(request,question_id):
 def results(request, question_id):
     question = get_object_or_404(Question,pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
+
+
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'last_question_list'
+
+    def get_queryset(self):
+        return Question.objects.order_by('-pub_date')[:2]
+
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
