@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 </head>
 <body>
     <h1>{{ question.question_text }}</h1>
@@ -11,6 +13,7 @@
             <li>{{ choice.choice_text }} -- {{ choice.votes }} 票{{ choice.votes|pluralize }}</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+    <a href="{% url 'polls:detail' question.id %}">再次投票?</a>
+    <a href="{% url 'polls:index' %}">回投票主页</a>
 </body>
 </html>
