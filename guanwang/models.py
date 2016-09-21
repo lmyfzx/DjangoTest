@@ -56,10 +56,11 @@ class Menus(models.Model):
         super(Menus, self).save(*args, **kwargs)
 
         current = 10
-        for item in MenuItem.objects.filter(menu=self).order_by('order'):
-            item.order = current
+        for item in MenuItem.objects.filter(menu=self).order_by('position'):
+            item.position = current
             item.save()
             current += 10
+
 
 class MenuItem(models.Model):
     menu = models.ForeignKey(to=Menus, verbose_name='菜单项')

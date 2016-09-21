@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': static.settings.MEDIA_ROOT}),
+    url(r'^static/?P<path>.*$', serve, {'document_root': static.settings.STATICFILES_DIRS}),
     url(r'^', include('guanwang.urls')),
 ]

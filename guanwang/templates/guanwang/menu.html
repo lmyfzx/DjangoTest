@@ -1,14 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 {% load menubuilder %}
-{% menu news %}
-{% for item in menuitems %}
-    <li><a href="{{ item.url }}" title="{{ item.title|escape }}"{% if item.current %} class='current'{% endif %}>{{ item.title }}</a></li>
-{% endfor %}
-</body>
-</html>
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            {% for o in object_list %}
+                {% if o.name == '首页' %}
+                    <li><a href="{{ o.base_url }}" title="{{ o.name }}">{{ o.name }}</a></li>
+                {% else %}
+                    <li class="dropdown"><a href="#" title="{{ o.name }}" class="dropdown-toggle" data-toggle="dropdown">{{ o.name }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            {% menu o.slug %}
+                            {% for item in menuitems %}
+                                <li><a href="{{ item.url }}" title="{{ item.title|escape }}"{% if item.current %} class='current'{% endif %}>{{ item.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</nav>

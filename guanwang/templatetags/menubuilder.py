@@ -22,13 +22,14 @@ class MenuObject(template.Node):
 
     def render(self, context):
         try:
+            menu_name = template.Variable(self.menu_name).resolve(context)
             current_path = context['request'].path
             user = context['request'].user
         except KeyError:
             current_path = None
             user = None
-
-        context['menuitems'] = get_items(self.menu_name, current_path, user)
+        print(menu_name)
+        context['menuitems'] = get_items(menu_name, current_path, user)
         return ''
 
 

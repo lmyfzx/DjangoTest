@@ -6,7 +6,7 @@ from .models import *
 
 class MenuView(generic.ListView):
     model = Menus
-
+    context_object_name = 'slug'
     template_name = 'guanwang/menu.html'
 
 
