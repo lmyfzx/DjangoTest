@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Menus, BannerImage, NewsArtile, Category, MenuItem
+from .models import Menus, SliderImage, NewsArtile, Category, MenuItem,SliderImageCategory
 # Register your models here.
 
 
@@ -20,8 +20,15 @@ class MenuAdmin(admin.ModelAdmin):
     inlines = [MenuItemInline, ]
 
 
-class BannerImageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'link', 'imagePath', 'image')
+class SliderImageCategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+
+
+class SliderImageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'position', 'category', 'get_item_url', 'image', 'is_published')
+    list_editable = ('position',)
+    ordering = ('position',)
+    list_filter = ('category',)
 
 
 class NewsArtileAdmin(admin.ModelAdmin):
@@ -44,7 +51,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Menus, MenuAdmin)
 # admin.site.register(ChildMenus,ChildMenusAdmin)
-admin.site.register(BannerImage,BannerImageAdmin)
-admin.site.register(NewsArtile,NewsArtileAdmin)
-admin.site.register(Category,CategoryAdmin)
+admin.site.register(SliderImageCategory, SliderImageCategoryAdmin)
+admin.site.register(SliderImage, SliderImageAdmin)
+admin.site.register(NewsArtile, NewsArtileAdmin)
+admin.site.register(Category, CategoryAdmin)
 # admin.site.register(Slug,SlugAdmin)

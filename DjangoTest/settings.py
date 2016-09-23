@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
+    # 'polls',
     'guanwang',
      'ckeditor',
     'ckeditor_uploader',
@@ -214,7 +214,7 @@ CKEDITOR_CONFIGS = {
 BOOTSTRAP3 = {
 
     # The URL to the jQuery JavaScript file
-    'jquery_url': '/static/bootstrap/',
+    'jquery_url': '//cdn.bootcss.com/jquery/3.1.0/jquery.js',
 
     # The Bootstrap base URL
     'base_url': '/static/bootstrap/',

@@ -28,7 +28,7 @@ class MenuObject(template.Node):
         except KeyError:
             current_path = None
             user = None
-        print(menu_name)
+        # print(menu_name)
         context['menuitems'] = get_items(menu_name, current_path, user)
         return ''
 
